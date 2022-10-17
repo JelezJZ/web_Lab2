@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Single page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    .container-fluid .review-item p.text {
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    .container-fluid .review-item p.name {
+        color:#f16d7f;
+        margin: 0;
+    }
+
+    .container-fluid .review-item p.location {
+        font-size:12px;
+    }
+
+    .carousel-img {
+        margin-left: auto; 
+        margin-right: auto;
+    }
+
+    .description-shadow {
+        border: 1px #dbdbdb solid; 
+        margin-top: -100px;
+    }
+</style>
+
+<body>
+<div class="wrapper">
+    <header class='container-fluid'>
+    <div class="container">
+        <nav class="navbar navbar-light bg-transparent top-nav">
+        <a class="navbar-brand m-sm-1 m-auto" href="#">Авто<span>Парк</span></a>
+        <div class="input-group form-inline mr-auto nav-search d-md-flex d-none">
+            <div class='btn-group'>
+            <button class="browse dropdown-toggle" id="dropdownMenuButtonBrowse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Найти</button>
+            <div class="dropdown-menu dropdown-menu-browse" aria-labelledby="dropdownMenuButtonBrowse">
+                <p>Машины</p> <hr>
+                <a class="dropdown-item" href="#">Марки</a>
+                <a class="dropdown-item" href="#">Машини</a>
+                <a class="dropdown-item" href="#">Товары</a>
+                <a class="dropdown-item" href="#">Наши покупатели</a>
+                <a class="dropdown-item" href="#">Отзывы</a>
+                <a class="dropdown-item" href="#">Цены</a>
+                <a class="dropdown-item" href="#">О нас</a>
+                <a class="dropdown-item" href="#">Наши партнеры</a>
+                <p>Авто запчасти</p> <hr>
+                <a class="dropdown-item" href="#">Товары</a>
+                <a class="dropdown-item" href="#">Доставка</a>
+            </div>
+            </div>
+            <input class="my-0 py-1 search-input" type="text" placeholder="Search for Item..." aria-label="Search">
+            <div class="input-group-append">
+            <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+            </div>
+        </div>
+        <div class='btn-group btn-group-cart m-sm-1 m-auto'>
+            <button class="cart dropdown-toggle" id="dropdownMenuButtonCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        </div>
+        <div class='btn-group'>
+            <button class="account button dropdown-toggle m-sm-1 m-auto" id="dropdownMenuButtonBrowse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Аккаунт</button>
+            <div class="dropdown-menu dropdown-menu-browse" aria-labelledby="dropdownMenuButtonBrowse">
+                <p>Информация об аккаунте</p> <hr>
+                <a class="dropdown-item" href="#">Данные об аккаунте</a>
+                <a class="dropdown-item" href="#">История заказов</a>
+                <a class="dropdown-item" href="#">Бонусная карта</a>
+            </div>
+        </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid bottom-menu">
+        <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-transparent">
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav m-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Главная</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Запчасти</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Машины</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">О нас</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Марки</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Расположение</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Цены</a>
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </div>      
+    </header>
+
+    <section class="container-fluid arrivals-section">
+        <div class='container arrivals'>
+            <table class="text-arrivals">
+                <tr>
+                    <td class="header-arrival">New Arrivals</td>
+                    <td class="rightcol-arrivals"><h1 class="header-arrival"><p>Home / Men / <span>New Arrivals</span></p></h1></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="container-fluid carouseloil-section" style="padding: 0;">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <div class="container carouseloil">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" style="margin-bottom: 60px;">
+                        <div class="carousel-item active">
+                        <img class="carousel-img d-block w-40" src="img/oil_slide1.webp" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                        <img class="carousel-img d-block w-40" src="img/oil_slide2.webp" alt="Second slide">
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true" style="background-image: url(https://img.icons8.com/external-outline-stroke-bomsymbols-/344/external-arrow-digital-design-outline-set-2-outline-stroke-bomsymbols-.png);"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true" style="background-image: url(https://img.icons8.com/external-outline-stroke-bomsymbols-/344/external-arrow-digital-design-outline-set-2-outline-stroke-bomsymbols--3.png);"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid description-section">
+        <div class="container description">
+            <div class="description-shadow shadow p-3 mb-5 bg-white rounded">
+                <h2 class="description-name1 text-uppercase font-weight-bold">Моторное масло Mobil</h2>
+                <h2 class="description-name2 text-uppercase font-weight-bold">Масло моторное Mobil Super 3000 X1 5W-40, 4 л</h2>
+                <p>Моторные масла 5W-40 — универсальные масла, которые превосходно себя зарекомендовали в бензиновых и дизельных двигателях в условиях умеренной климатической зоны.
+                    Такие масла являются всесезонными для тех автомобилей, которые эксплуатируются в странах с умеренно холодной зимой и жарким летом. Масло 5W-40 обеспечивает превосходную защиту силовым агрегатам легковых авто, коммерческих фургонов, под капотом которых находятся как атмосферные двигатели, так и двигатели с турбонаддувом. Линейки масел вязкости 5W-40 представлены широким набором модификаций. Подходят для современных двигателей, двигателей старых поколений и двигателей раритетных авто.
+                    Отличительной особенностью, данных масел является оптимальная вязкость. То есть смазка оставляет на деталях достаточно толстую защитную пленку и в тоже время обладает неплохой текучестью. Присутствуют как синтетические, так и полусинтетические масла.</p>
+                <p class="description-text1">Класс вязкости SAE:<span>5W-40</span></p>
+                <p class="description-text2"> Вид упаковки:<span>Канистра</span></p>
+                <h2 class="description-cost">$40.00</h2>
+                <div class="description-border"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                        <h2 class="description-btngroup">Тип основы масла
+                            <select class="form-select" aria-label="Default select example" style="border-radius: 0;">
+                                <option value="1">Синтетика</option>
+                                <option value="2">Полусинтетика</option>
+                            </select>
+                        </h2>
+                        
+                        </div>
+                        <div class="col-sm">
+                        <h2 class="description-btngroup">Объем
+                            <select class="form-select" aria-label="Default select example" style="border-radius: 0;">
+                                <option value="1">4 л</option>
+                                <option value="2">5 л</option>
+                            </select>
+                        </h2>
+                        </div>
+                        <div class="col-sm">
+                        <h2 class="description-btngroup">Количество</h2>
+                        <input class="description-inpt my-0 py-1 search-input" type="text" placeholder="1" aria-label="Search" style="border: 1px solid #ced4da;">
+                        </div>
+                    </div>
+                    <button class="button-add-to-cart">
+                        <img class="description-img" src="img/cart2.png">
+                        Add to card 
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container product text-center" style="padding-bottom: 0;">
+        <h3 class='product__header' style="margin-bottom: 25px;">Вам также может понравится</h3>
+        <div class="row justify-content-center text-center text-md-left">
+            <div class="col-sm-6 col-md-3">
+            <div class="item-wrapper">
+                <div class="item-img"><img src="img/oil1.webp" alt="Image 1" style="width: 200px; height: 300px"></div>
+                <p>Масло моторное Nissan MOTOR OIL FS 5W-40 A3/B4, 5 л </p>
+                <span>от $50.00</span>
+            </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+            <div class="item-wrapper">
+                <div class="item-img"><img src="img/oil2.webp" alt="Image 2" style="width: 200px; height: 300px"></div>
+                <p>Масло моторное Mobil Super 3000 X1 5W-40, 4 л</p>
+                <span>от $40.00</span>
+            </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+            <div class="item-wrapper">
+                <div class="item-img"><img src="img/oil3.webp" alt="Image 3" style="width: 200px; height: 300px"></div>
+                <p>Масло моторное Elf Evolution 900 SXR 5W-40, 5 л</p>
+                <span>$45.00</span>
+            </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+            <div class="item-wrapper">
+                <div class="item-img"><img src="img/oil4.webp" alt="Image 4" style="width: 200px; height: 300px"></div>
+                <p>Масло моторное Hyundai/Kia Turbo SYN Gasoline 5W-30, 4 л</p>
+                <span>$55.00</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="subscribe container-fluid">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12 col-lg-6 slider">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Цены приемлемые, обслуживание качественное.”
+                                    </p>
+
+                                    <p class="name">Иванов А.А.</p>
+                                    <p class="location">ДНР, Донецк</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face2.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Отличный вервис, все очень быстро!”
+                                    </p>
+
+                                    <p class="name">Григорий А.Р.</p>
+                                    <p class="location">ДНР, Горловка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face3.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Все отлично, доставили в целостности”
+                                    </p>
+
+                                    <p class="name">Виталий Ф.Д.</p>
+                                    <p class="location">ДНР, Маеевка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6 text-center subscribe-col">
+            <h5>Подписка</h5>
+            <p>Будь в курсе всех новостей, и самых горячих поставок!</p>
+            <div class="subscribe-wrapper">
+            <form action="#">
+                <input type="email" name="email" placeholder="Enter Your Email">
+                <button type="submit" class="button">Подписаться</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <footer class="container-fluid">
+    <div class="container">
+        <div class="row navigation">
+        <div class="col-md-12 col-lg-5">
+            <a class="navbar-brand" href="#">Авто<span>Парк</span></a>
+            <p class='footer-text'>Ждем вас в нашем магазине. </p> <br>
+            <p class='footer-text'> Побалуйте себя и своего "железного" коня.</p>
+        </div>
+        <div class='col-md-12 col-lg-7 footer-navigation'>
+            <div class='row justify-content-center'>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">О нас</h5>
+                <a href="#" class="footer-link">Главная</a> <br>
+                <a href="#" class="footer-link">Товары</a> <br>
+                <a href="#" class="footer-link">Машины</a> <br>
+                <a href="#" class="footer-link">Цены</a> <br>
+                <a href="#" class="footer-link">Поставки</a>
+            </div>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">Информация</h5> 
+                <a href="#" class="footer-link">Пользовательское соглашение</a> <br>
+                <a href="#" class="footer-link">Документы</a> <br>
+                <a href="#" class="footer-link">Подписки</a> <br>
+                <a href="#" class="footer-link">Партнеры</a> <br>
+                <a href="#" class="footer-link">Акции</a>
+            </div>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">Категории</h5>
+                <a href="#" class="footer-link">Машины</a> <br>
+                <a href="#" class="footer-link">Запчасти</a> <br>
+                <a href="#" class="footer-link">Площадки</a> <br>
+                <a href="#" class="footer-link">Аренда</a> <br>
+                <a href="#" class="footer-link">Все категории</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class='container-fluid gray bottom-footer'>
+        <div class='container'>
+        <div class="row">
+            <div class="col-md-12 col-lg-6 copyright">
+                <p class='text-center text-lg-left'>© 2022  Авто Парк</p>
+            </div>
+            <div class="col-md-12 col-lg-6 social text-center text-lg-right">
+            <a href="#" class='social-link'><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-twitter"></i></a>
+            <a href="#" class='social-link disabled'><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-pinterest-p"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-google-plus-g"></i></a>
+            </div>
+        </div>
+        </div>
+    </div>
+    </footer>
+</div> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>     
+    </body>
+</html>

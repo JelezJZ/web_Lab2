@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    .container-fluid .review-item p.text {
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    .container-fluid .review-item p.name {
+        color:#f16d7f;
+        margin: 0;
+    }
+
+    .container-fluid .review-item p.location {
+        font-size:12px;
+    }
+
+    .accordion-button {
+        color: #6f6e6e;
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: #f16d7f;
+        box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+    }
+
+    .accordion-button::after {
+        flex-shrink: 0;
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-left: auto;
+        content: "";
+        background-image: url("img/icons8-arrow-1.png");
+        background-repeat: no-repeat;
+        background-size: 1.25rem;
+        transition: transform .2s ease-in-out;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+        background-image: url("img/icons8-arrow-2.png");
+        transform: rotate(-1deg);
+    }
+
+    .filter-btn {
+        font-size: 12pt;
+        color: #6f6e6e;
+        margin-bottom: 15px;
+    }
+
+    .price-input{
+        width: 100%;
+        display: flex;
+    }
+    .price-input .field{
+        display: flex;
+        width: 100%;
+        height: 45px;
+        align-items: center;
+    }
+    .field input{
+        width: 100%;
+        height: 100%;
+        outline: none;
+        font-size: 19px;
+        margin-left: 12px;
+        border-radius: 5px;
+        text-align: center;
+        -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    .price-input .separator{
+        width: 130px;
+        display: flex;
+        font-size: 19px;
+        align-items: center;
+        justify-content: center;
+    }
+    .slider{
+        height: 5px;
+        position: relative;
+        background: #ddd;
+        border-radius: 5px;
+    }
+    .slider .progress{
+        height: 100%;
+        left: 30%;
+        right: 30%;
+        position: absolute;
+        border-radius: 5px;
+        background: #f16d7f;
+    }
+    .range-input{
+    position: relative;
+    }
+    .range-input input{
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        top: -5px;
+        background: none;
+        pointer-events: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+    input[type="range"]::-webkit-slider-thumb{
+        height: 17px;
+        width: 17px;
+        border-radius: 50%;
+        background: #f16d7f;
+        pointer-events: auto;
+        -webkit-appearance: none;
+        box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    }
+    input[type="range"]::-moz-range-thumb{
+        height: 17px;
+        width: 17px;
+        border: none;
+        border-radius: 50%;
+        background: #f16d7f;
+        pointer-events: auto;
+        -moz-appearance: none;
+        box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    }
+
+    .form-check-label {
+        font-size: 12pt; 
+        color: #6f6e6e; 
+        margin-bottom: 15px; 
+        margin-top: 3px;
+    }
+
+    .filter-and-products-row {
+        margin-bottom: 100px; 
+        margin-top: 100px;
+    }
+
+    .filter-col {
+        max-width: 330px;
+    }
+
+    .accordion-header {
+        border-bottom: 1px solid #e6e6e6; 
+        border-left: 5px solid #f16d7f;
+    }
+
+    .accordion-button {
+        text-transform: uppercase; 
+        font-weight: bold; 
+        font-size: 13pt;
+    }
+
+    .product-header {
+        color: #6f6e6e;
+        text-transform:uppercase; 
+        font-weight:bold; 
+        font-size: 12pt; 
+        margin-bottom: 15px;
+    }
+</style>
+
+<body>
+<div class="wrapper">
+    <header class='container-fluid'>
+    <div class="container">
+        <nav class="navbar navbar-light bg-transparent top-nav">
+        <a class="navbar-brand m-sm-1 m-auto" href="#">Авто<span>Парк</span></a>
+        <div class="input-group form-inline mr-auto nav-search d-md-flex d-none">
+            <div class='btn-group'>
+            <button class="browse dropdown-toggle" id="dropdownMenuButtonBrowse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Найти</button>
+            <div class="dropdown-menu dropdown-menu-browse" aria-labelledby="dropdownMenuButtonBrowse">
+                <p>Машины</p> <hr>
+                <a class="dropdown-item" href="#">Марки</a>
+                <a class="dropdown-item" href="#">Машини</a>
+                <a class="dropdown-item" href="#">Товары</a>
+                <a class="dropdown-item" href="#">Наши покупатели</a>
+                <a class="dropdown-item" href="#">Отзывы</a>
+                <a class="dropdown-item" href="#">Цены</a>
+                <a class="dropdown-item" href="#">О нас</a>
+                <a class="dropdown-item" href="#">Наши партнеры</a>
+                <p>Авто запчасти</p> <hr>
+                <a class="dropdown-item" href="#">Товары</a>
+                <a class="dropdown-item" href="#">Доставка</a>
+            </div>
+            </div>
+            <input class="my-0 py-1 search-input" type="text" placeholder="Search for Item..." aria-label="Search">
+            <div class="input-group-append">
+            <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+            </div>
+        </div>
+        <div class='btn-group btn-group-cart m-sm-1 m-auto'>
+            <button class="cart dropdown-toggle" id="dropdownMenuButtonCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        </div>
+        <div class='btn-group'>
+            <button class="account button dropdown-toggle m-sm-1 m-auto" id="dropdownMenuButtonBrowse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Аккаунт</button>
+            <div class="dropdown-menu dropdown-menu-browse" aria-labelledby="dropdownMenuButtonBrowse">
+                <p>Информация об аккаунте</p> <hr>
+                <a class="dropdown-item" href="#">Данные об аккаунте</a>
+                <a class="dropdown-item" href="#">История заказов</a>
+                <a class="dropdown-item" href="#">Бонусная карта</a>
+            </div>
+        </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid bottom-menu">
+        <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-transparent">
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav m-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Главная</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Запчасти</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Машины</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">О нас</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Марки</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Расположение</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Цены</a>
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </div>      
+    </header>
+
+    <section class="container-fluid arrivals-section">
+        <div class='container arrivals'>
+            <table class="text-arrivals">
+                <tr>
+                    <td class="header-arrival">New Arrivals</td>
+                    <td class="rightcol-arrivals"><h1 class="header-arrival"><p>Home / Men / <span>New Arrivals</span></p></h1></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="container-fluid filter-and-products">
+        <div class="container filter-and-products">
+            <div class="filter-and-products-row row">
+                <div class="filter-col col-sm">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item" style="margin-bottom: 20px;">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Категории
+                            </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <button class="filter-btn" type="button">Фильтры</button><br>
+                                <button class="filter-btn" type="button">Тормозная система</button><br>
+                                <button class="filter-btn" type="button">Амортизаторы и пружины</button><br>
+                                <button class="filter-btn" type="button">Система зажигания</button><br>
+                                <button class="filter-btn" type="button">Ходовая часть и рулевое управление</button><br>
+                                <button class="filter-btn" type="button">Система подачи топлива</button><br>
+                                <button class="filter-btn" type="button">Выхлопная система</button><br>
+                                <button class="filter-btn" type="button">Система привода</button><br>
+                                <button class="filter-btn" type="button">Электрооборудование</button>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" style="margin-bottom: 20px;">
+                            <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                Бренд
+                            </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">...</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                Марка авто
+                            </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h1 class="product-header">
+                                Популярные бренды
+                            </h1>
+                            <button class="filter-btn" type="button" style="padding-right:5px; border-right: 2px solid #e6e6e6;">AND</button>
+                            <button class="filter-btn" type="button" style="padding-left:5px; padding-right:5px; border-right: 2px solid #e6e6e6;">BMW</button>
+                            <button class="filter-btn" type="button" style="padding-left:5px;">Bosh</button><br>
+                            <button class="filter-btn" type="button" style="padding-right:5px; border-right: 2px solid #e6e6e6;">Daf</button>
+                            <button class="filter-btn" type="button" style="padding-left:5px; padding-right:5px; border-right: 2px solid #e6e6e6;">Ford</button>
+                            <button class="filter-btn" type="button" style="padding-left:5px;">KTM</button>
+                        </div>
+                        <div class="col-sm">
+                            <h1 class="product-header">
+                                Диаметр диска
+                            </h1>
+                            <div class="row">
+                                <div class="col-sm" style="max-width: 50px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            16
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm" style="max-width: 50px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            17
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm" style="max-width: 50px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            18
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm" style="max-width: 50px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            19
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm" style="max-width: 50px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            20
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm" style="max-width: 50px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            21
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm" style="max-width: 50px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            22
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <h1 class="product-header" style="margin-bottom: -20px;">
+                                Цена
+                            </h1>
+                            <div class="price-input">
+                                <div class="field">
+                                    <div style="font-size: 12pt; color: #6f6e6e; margin-top: 100px;">$</div><input type="number" class="input-min" value="300" style="font-size: 12pt; color: #6f6e6e; text-align: left; margin: 0; margin-top: 100px;margin-left: 10px;">
+                                </div>
+                                <div class="field">
+                                    <div style="font-size: 12pt; color: #6f6e6e; margin-left: 65px; margin-top: 100px;">$</div><input type="number" class="input-max" value="700" style="font-size: 12pt; color: #6f6e6e; text-align: right; margin: 0; margin-top: 100px;">
+                                </div>
+                                </div>
+                                <div class="slider" style="padding-top: 3px; padding-bottom: 3px;">
+                                    <div class="progress" style="height: 10px; top: -2px">
+                                </div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="range-min" min="0" max="1000" value="300" step="10">
+                                    <input type="range" class="range-max" min="0" max="1000" value="700" step="10">
+                                </div>
+                            </div>
+                            <script src="script.js"></script>
+                        </div>
+                        <div style="background-color: #ececec; height: 50px; margin-top: 30px; margin-bottom: 30px;">
+                            <div style="background-color: #fff; width:80px; height: 33px; border: 1px solid #e6e6e6; font-size: 12pt; color: #6f6e6e; text-align: center; padding: 9px; display: inline-block; margin-top: 8px; margin-left: 10px;">
+                                Sort by
+                            </div>
+                            <select class="form-sort" aria-label="Пример выбора по умолчанию">
+                                <option value="1">Алфавит</option>
+                                <option value="2">Цена Б>М</option>
+                                <option value="3">Цена М>Б</option>
+                            </select>
+                            <div style="background-color: #fff; width:80px; height: 33px; border: 1px solid #e6e6e6; font-size: 12pt; color: #6f6e6e; text-align: center; padding: 9px; display: inline-block; margin-top: 8px; margin-left: 10px;">
+                                Show
+                            </div>
+                            <select class="form-sort" aria-label="Пример выбора по умолчанию" style="width: 70px;">
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div class="row justify-content-center text-center text-md-left">
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row justify-content-center text-center text-md-left">
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row justify-content-center text-center text-md-left">
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                <div class="item-wrapper">
+                                    <div class="item-img"><img src="img/tire1.jpg" alt="Image 1" style="width: 200px; height: 250px"></div>
+                                    <p>Шина Легковая Зимняя Premiorri ViaMaggiore Z Plus</p>
+                                    <span>$50.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                                <li class="page-item"><a class="page-link" href="#">20</a></li>
+                                <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                                </li>
+                                <button class="button-add-to-cart" style="margin: 0; width: 200px; margin-left: auto;">
+                                View All
+                                </button>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid feature-section">
+        <div class='container feature' style="margin-bottom: 0;">
+            <div class="col-md-12">
+                <div class="row justify-content-center" style="text-align: center;">
+                    <div class="col">
+                        <div class="feature-item-2">
+                            <img class="feature-img" src="img/delivery.png" alt="Delivery" style="position: inherit; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+                            <h5>Бесплатная доставка</h5>
+                            <p>Мы готовы доставить вам товар бесплатно в любую точку россии.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="feature-item-2">
+                            <img src="img/percent.png" alt="Percent" style="position: inherit; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+                            <h5>Распродажи & скидки</h5>
+                            <p>Регулярные распродажи и скидки владельцам наших карт, покупай нашу продукцию по карте и получи кэшбэк!</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="feature-item-2">
+                            <img src="img/crown.png" alt="Crown" style="position: inherit; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+                            <h5>Качество & Надежность</h5>
+                            <p>Более 10 лет на рынке, более 100000 сделок по всему миру, мы надежный поставщик качественного товара.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="subscribe container-fluid">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12 col-lg-6 slider" style="background: none;">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Цены приемлемые, обслуживание качественное.”
+                                    </p>
+
+                                    <p class="name">Иванов А.А.</p>
+                                    <p class="location">ДНР, Донецк</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face2.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Отличный вервис, все очень быстро!”
+                                    </p>
+
+                                    <p class="name">Григорий А.Р.</p>
+                                    <p class="location">ДНР, Горловка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face3.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Все отлично, доставили в целостности”
+                                    </p>
+
+                                    <p class="name">Виталий Ф.Д.</p>
+                                    <p class="location">ДНР, Маеевка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6 text-center subscribe-col">
+            <h5>Подписка</h5>
+            <p>Будь в курсе всех новостей, и самых горячих поставок!</p>
+            <div class="subscribe-wrapper">
+            <form action="#">
+                <input type="email" name="email" placeholder="Enter Your Email">
+                <button type="submit" class="button">Подписаться</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <footer class="container-fluid">
+    <div class="container">
+        <div class="row navigation">
+        <div class="col-md-12 col-lg-5">
+            <a class="navbar-brand" href="#">Авто<span>Парк</span></a>
+            <p class='footer-text'>Ждем вас в нашем магазине. </p> <br>
+            <p class='footer-text'> Побалуйте себя и своего "железного" коня.</p>
+        </div>
+        <div class='col-md-12 col-lg-7 footer-navigation'>
+            <div class='row justify-content-center'>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">О нас</h5>
+                <a href="#" class="footer-link">Главная</a> <br>
+                <a href="#" class="footer-link">Товары</a> <br>
+                <a href="#" class="footer-link">Машины</a> <br>
+                <a href="#" class="footer-link">Цены</a> <br>
+                <a href="#" class="footer-link">Поставки</a>
+            </div>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">Информация</h5> 
+                <a href="#" class="footer-link">Пользовательское соглашение</a> <br>
+                <a href="#" class="footer-link">Документы</a> <br>
+                <a href="#" class="footer-link">Подписки</a> <br>
+                <a href="#" class="footer-link">Партнеры</a> <br>
+                <a href="#" class="footer-link">Акции</a>
+            </div>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">Категории</h5>
+                <a href="#" class="footer-link">Машины</a> <br>
+                <a href="#" class="footer-link">Запчасти</a> <br>
+                <a href="#" class="footer-link">Площадки</a> <br>
+                <a href="#" class="footer-link">Аренда</a> <br>
+                <a href="#" class="footer-link">Все категории</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class='container-fluid gray bottom-footer'>
+        <div class='container'>
+        <div class="row">
+            <div class="col-md-12 col-lg-6 copyright">
+                <p class='text-center text-lg-left'>© 2022  Авто Парк</p>
+            </div>
+            <div class="col-md-12 col-lg-6 social text-center text-lg-right">
+            <a href="#" class='social-link'><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-twitter"></i></a>
+            <a href="#" class='social-link disabled'><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-pinterest-p"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-google-plus-g"></i></a>
+            </div>
+        </div>
+        </div>
+    </div>
+    </footer>
+</div> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>     
+    </body>
+</html>

@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    .container-fluid .review-item p.text {
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    .container-fluid .review-item p.name {
+        color:#f16d7f;
+        margin: 0;
+    }
+
+    .container-fluid .review-item p.location {
+        font-size:12px;
+    }
+
+    #rectangle {
+    width: 335px;
+    height: 200px;
+    background: rgb(238, 238, 238);
+    border-top: 1px solid #fff;
+    }
+
+    .table td {
+    vertical-align: middle;
+    }
+
+    .delete {
+    background-color: rgba(10,10,10,.2);
+    border-radius: 9999px;
+    cursor: pointer;
+    pointer-events: auto;
+    display: inline-block;
+    font-size: 0;
+    height: 20px;
+    max-height: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    position: relative;
+    width: 20px;
+    margin: auto;
+    display: block;
+    }
+
+    .delete::after, .modal-close::after {
+        height: 50%;
+        width: 2px;
+    }
+
+    .delete::after, .delete::before, .modal-close::after, .modal-close::before {
+        background-color: #fff;
+        content: "";
+        display: block;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        transform-origin: center center;
+    }
+
+    .delete::before, .modal-close::before {
+        height: 2px;
+        width: 50%;
+    }
+
+    .delete:active {
+        background-color: rgba(10,10,10,.4);
+    }
+
+    .product-table-input {
+        border: 1px solid #ced4da; 
+        margin: auto; 
+        width: 54px; 
+        height: 30px; 
+        text-align: center; 
+        padding-left: 0;
+    }
+
+    .product-table-btn {
+        line-height: 50px; 
+        padding-left: 60px; 
+        padding-right: 60px; 
+        font-size: 12pt; 
+        margin-top: 20px;
+    }
+
+    .proceed-btn {
+        display: block; 
+        margin-left: auto; 
+        width: 273px; 
+        margin-right: 30px;
+    }
+
+    .product-table-package {
+        font-size: 13pt; 
+        color: #464646; 
+        margin-bottom: 10px;
+    }
+
+    .product-table-package span {
+        color: #8b8b8b;
+    }
+
+    .product-table-class {
+        font-size: 13pt; 
+        color: #464646;
+    }
+
+    .product-table-class span {
+        color: #8b8b8b;
+    }
+</style>
+
+<body>
+<div class="wrapper">
+    <header class='container-fluid'>
+    <div class="container">
+        <nav class="navbar navbar-light bg-transparent top-nav">
+        <a class="navbar-brand m-sm-1 m-auto" href="#">Авто<span>Парк</span></a>
+        <div class="input-group form-inline mr-auto nav-search d-md-flex d-none">
+            <div class='btn-group'>
+            <button class="browse dropdown-toggle" id="dropdownMenuButtonBrowse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Найти</button>
+            <div class="dropdown-menu dropdown-menu-browse" aria-labelledby="dropdownMenuButtonBrowse">
+                <p>Машины</p> <hr>
+                <a class="dropdown-item" href="#">Марки</a>
+                <a class="dropdown-item" href="#">Машини</a>
+                <a class="dropdown-item" href="#">Товары</a>
+                <a class="dropdown-item" href="#">Наши покупатели</a>
+                <a class="dropdown-item" href="#">Отзывы</a>
+                <a class="dropdown-item" href="#">Цены</a>
+                <a class="dropdown-item" href="#">О нас</a>
+                <a class="dropdown-item" href="#">Наши партнеры</a>
+                <p>Авто запчасти</p> <hr>
+                <a class="dropdown-item" href="#">Товары</a>
+                <a class="dropdown-item" href="#">Доставка</a>
+            </div>
+            </div>
+            <input class="my-0 py-1 search-input" type="text" placeholder="Search for Item..." aria-label="Search">
+            <div class="input-group-append">
+            <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+            </div>
+        </div>
+        <div class='btn-group btn-group-cart m-sm-1 m-auto'>
+            <button class="cart dropdown-toggle" id="dropdownMenuButtonCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        </div>
+        <div class='btn-group'>
+            <button class="account button dropdown-toggle m-sm-1 m-auto" id="dropdownMenuButtonBrowse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Аккаунт</button>
+            <div class="dropdown-menu dropdown-menu-browse" aria-labelledby="dropdownMenuButtonBrowse">
+                <p>Информация об аккаунте</p> <hr>
+                <a class="dropdown-item" href="#">Данные об аккаунте</a>
+                <a class="dropdown-item" href="#">История заказов</a>
+                <a class="dropdown-item" href="#">Бонусная карта</a>
+            </div>
+        </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid bottom-menu">
+        <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-transparent">
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav m-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Главная</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Запчасти</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Машины</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">О нас</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Марки</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Расположение</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Цены</a>
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </div>      
+    </header>
+
+    <section class="container-fluid arrivals-section">
+        <div class='container arrivals'>
+            <table class="text-arrivals">
+                <tr>
+                    <td class="header-arrival">New Arrivals</td>
+                    <td class="rightcol-arrivals"><h1 class="header-arrival"><p>Home / Men / <span>New Arrivals</span></p></h1></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="container-fluid product-info-section">
+        <div class="container product-info">
+            <table class="table product-table">
+                <thead>
+                    <tr class="product-table-tr">
+                        <th scope="col">product details</th>
+                        <th scope="col" class="product-table-item">unite price</th>
+                        <th scope="col" class="product-table-item">quantity</th>
+                        <th scope="col" class="product-table-item">shipping</th>
+                        <th scope="col" class="product-table-item">subtotal</th>
+                        <th scope="col" class="product-table-item">action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <img src="img/oil1.webp" alt="" class="product-table-img">
+                            <h1 class="product-table-header">Масло моторное Nissan MOTOR OIL</h1>
+                            <p class="product-table-package">Вид упаковки: <span>Канистра</span></p>
+                            <p class="product-table-class">Класс вязкости SAE: <span>5W-40</span></p>
+                        </th>
+                        <td class="product-table-price">$40</td>
+                        <td><input class="description-inpt my-0 py-1 search-input product-table-input" type="text" placeholder="2" aria-label="Search"></td>
+                        <td class="produtct-table-sipping">FREE</td>
+                        <td class="product-table-price">$80</td>
+                        <td>
+                            <button class="delete"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <img src="img/oil2.webp" alt="" class="product-table-img">
+                            <h1 class="product-table-header">Масло моторное Mobil Super 3000</h1>
+                            <p class="product-table-package">Вид упаковки: <span>Канистра</span></p>
+                            <p class="product-table-class">Класс вязкости SAE: <span>5W-40</span></p>
+                        </th>
+                        <td class="product-table-price">$40</td>
+                        <td><input class="description-inpt my-0 py-1 search-input product-table-input" type="text" placeholder="2" aria-label="Search"></td>
+                        <td class="produtct-table-sipping">FREE</td>
+                        <td class="product-table-price">$80</td>
+                        <td>
+                            <button class="delete"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <img src="img/oil3.webp" alt="" class="product-table-img">
+                            <h1 class="product-table-header">Масло моторное Elf Evolution 900</h1>
+                            <p class="product-table-package">Вид упаковки: <span>Канистра</span></p>
+                            <p class="product-table-class">Класс вязкости SAE: <span>5W-40</span></p>
+                        </th>
+                        <td class="product-table-price">$40</td>
+                        <td><input class="description-inpt my-0 py-1 search-input product-table-input" type="text" placeholder="2" aria-label="Search"></td>
+                        <td class="produtct-table-sipping">FREE</td>
+                        <td class="product-table-price">$80</td>
+                        <td> 
+                            <button class="delete"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="cart-info-btn product-table-btn" >CLEAR SHOPPING CART</button>
+            <button type="button" class="cart-info-btn product-table-btn" style="float: right;">CONTINUE sHOPPING</button>
+        </div>
+    </section>
+
+    <section class="container-fluid cart-info-section">
+        <div class='container cart-info'>
+            <div class="container" style="padding-left: 0; padding-right: 0; margin-top: 50px; margin-bottom: 50px;">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="cart-info-leftcol">
+                            <div class="shipping-adress">
+                                <h1 class="header-cart-info">shipping adress</h1>
+                                <div class="cart-info-inpt-group">
+                                    <input class="country-inpt my-0 py-1" type="text" placeholder="Country" aria-label="Search">
+                                </div>
+                                <div class="cart-info-inpt-group">
+                                    <input class="state-inpt my-0 py-1" type="text" placeholder="State" aria-label="Search">
+                                </div>
+                                <div class="cart-info-inpt-group">
+                                    <input class="postcode-inpt my-0 py-1" type="text" placeholder="Postcode/Zip" aria-label="Search">
+                                </div>
+                                <button type="button" class="cart-info-btn">get a quote</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm">
+                        <div class="cart-info-centercol">
+                            <div class="coupon-discount">
+                                <h1 class="header-cart-info">coupon discount</h1>
+                                <p>Enter your coupon code if you have one</p>
+                                <div class="cart-info-inpt-group">
+                                    <input class="state-inpt my-0 py-1" type="text" placeholder="State" aria-label="Search">
+                                </div>
+                                <button type="button" class="cart-info-btn">apply coupon</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm">
+                        <div class="cart-info-rightcol" id="rectangle">
+                            <div class="grand-total">
+                                <p>sub total <span>$240</span></p>
+                                <h1 class="header-cart-info">grand total <span>$240</span></h1>
+                                <div class="cart-info-border"></div>
+                                <button class="proceed-btn button btn_product text-uppercase font-weight-bold">proceed to checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="subscribe container-fluid">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12 col-lg-6 slider">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Цены приемлемые, обслуживание качественное.”
+                                    </p>
+
+                                    <p class="name">Иванов А.А.</p>
+                                    <p class="location">ДНР, Донецк</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face2.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Отличный вервис, все очень быстро!”
+                                    </p>
+
+                                    <p class="name">Григорий А.Р.</p>
+                                    <p class="location">ДНР, Горловка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face3.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Все отлично, доставили в целостности”
+                                    </p>
+
+                                    <p class="name">Виталий Ф.Д.</p>
+                                    <p class="location">ДНР, Маеевка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6 text-center subscribe-col">
+            <h5>Подписка</h5>
+            <p>Будь в курсе всех новостей, и самых горячих поставок!</p>
+            <div class="subscribe-wrapper">
+            <form action="#">
+                <input type="email" name="email" placeholder="Enter Your Email">
+                <button type="submit" class="button">Подписаться</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <footer class="container-fluid">
+    <div class="container">
+        <div class="row navigation">
+        <div class="col-md-12 col-lg-5">
+            <a class="navbar-brand" href="#">Авто<span>Парк</span></a>
+            <p class='footer-text'>Ждем вас в нашем магазине. </p> <br>
+            <p class='footer-text'> Побалуйте себя и своего "железного" коня.</p>
+        </div>
+        <div class='col-md-12 col-lg-7 footer-navigation'>
+            <div class='row justify-content-center'>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">О нас</h5>
+                <a href="#" class="footer-link">Главная</a> <br>
+                <a href="#" class="footer-link">Товары</a> <br>
+                <a href="#" class="footer-link">Машины</a> <br>
+                <a href="#" class="footer-link">Цены</a> <br>
+                <a href="#" class="footer-link">Поставки</a>
+            </div>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">Информация</h5> 
+                <a href="#" class="footer-link">Пользовательское соглашение</a> <br>
+                <a href="#" class="footer-link">Документы</a> <br>
+                <a href="#" class="footer-link">Подписки</a> <br>
+                <a href="#" class="footer-link">Партнеры</a> <br>
+                <a href="#" class="footer-link">Акции</a>
+            </div>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">Категории</h5>
+                <a href="#" class="footer-link">Машины</a> <br>
+                <a href="#" class="footer-link">Запчасти</a> <br>
+                <a href="#" class="footer-link">Площадки</a> <br>
+                <a href="#" class="footer-link">Аренда</a> <br>
+                <a href="#" class="footer-link">Все категории</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class='container-fluid gray bottom-footer'>
+        <div class='container'>
+        <div class="row">
+            <div class="col-md-12 col-lg-6 copyright">
+                <p class='text-center text-lg-left'>© 2022  Авто Парк</p>
+            </div>
+            <div class="col-md-12 col-lg-6 social text-center text-lg-right">
+            <a href="#" class='social-link'><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-twitter"></i></a>
+            <a href="#" class='social-link disabled'><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-pinterest-p"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-google-plus-g"></i></a>
+            </div>
+        </div>
+        </div>
+    </div>
+    </footer>
+</div> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>     
+    </body>
+</html>

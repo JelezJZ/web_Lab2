@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    .container-fluid .review-item p.text {
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    .container-fluid .review-item p.name {
+        color:#f16d7f;
+        margin: 0;
+    }
+
+    .container-fluid .review-item p.location {
+        font-size:12px;
+    }
+</style>
+
+<body>
+<div class="wrapper">
+    <header class='container-fluid'>
+    <div class="container">
+        <nav class="navbar navbar-light bg-transparent top-nav">
+        <a class="navbar-brand m-sm-1 m-auto" href="#">Авто<span>Парк</span></a>
+        <div class="input-group form-inline mr-auto nav-search d-md-flex d-none">
+            <div class='btn-group'>
+            <button class="browse dropdown-toggle" id="dropdownMenuButtonBrowse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Найти</button>
+            <div class="dropdown-menu dropdown-menu-browse" aria-labelledby="dropdownMenuButtonBrowse">
+                <p>Машины</p> <hr>
+                <a class="dropdown-item" href="#">Марки</a>
+                <a class="dropdown-item" href="#">Машини</a>
+                <a class="dropdown-item" href="#">Товары</a>
+                <a class="dropdown-item" href="#">Наши покупатели</a>
+                <a class="dropdown-item" href="#">Отзывы</a>
+                <a class="dropdown-item" href="#">Цены</a>
+                <a class="dropdown-item" href="#">О нас</a>
+                <a class="dropdown-item" href="#">Наши партнеры</a>
+                <p>Авто запчасти</p> <hr>
+                <a class="dropdown-item" href="#">Товары</a>
+                <a class="dropdown-item" href="#">Доставка</a>
+            </div>
+            </div>
+            <input class="my-0 py-1 search-input" type="text" placeholder="Search for Item..." aria-label="Search">
+            <div class="input-group-append">
+            <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+            </div>
+        </div>
+        <div class='btn-group btn-group-cart m-sm-1 m-auto'>
+            <button class="cart dropdown-toggle" id="dropdownMenuButtonCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        </div>
+        <div class='btn-group'>
+            <button class="account button dropdown-toggle m-sm-1 m-auto" id="dropdownMenuButtonBrowse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Аккаунт</button>
+            <div class="dropdown-menu dropdown-menu-browse" aria-labelledby="dropdownMenuButtonBrowse">
+                <p>Информация об аккаунте</p> <hr>
+                <a class="dropdown-item" href="#">Данные об аккаунте</a>
+                <a class="dropdown-item" href="#">История заказов</a>
+                <a class="dropdown-item" href="#">Бонусная карта</a>
+            </div>
+        </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid bottom-menu">
+        <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-transparent">
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav m-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Главная</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Запчасти</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Машины</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">О нас</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Марки</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Расположение</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Цены</a>
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </div>      
+    </header>
+
+    <section class="container-fluid arrivals-section">
+        <div class='container arrivals'>
+            <table class="text-arrivals">
+                <tr>
+                    <td class="header-arrival">New Arrivals</td>
+                    <td class="rightcol-arrivals"><h1 class="header-arrival"><p>Home / Men / <span>New Arrivals</span></p></h1></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="container-fluid accordion-section">
+        <div class="container accord accordion" id="accordionExample">
+            <div class="accordion-item border-bottom">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <p class="text-uppercase font-weight-bold">01. Shipping Adress</p>
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class='container accord'>
+                        <table class="text-shipping-addres">
+                            <tr>
+                                <td class="leftcol-shipping-addres">
+                                    <h1 class="text-uppercase font-weight-bold">Check as a guest or register</h1>
+                                    <p>Register with us for future convenience</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            <h1 class="text-uppercase font-weight-bold">Checkout as guest</h1>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            <h1 class="text-uppercase font-weight-bold">Register</h1>
+                                        </label>
+                                    </div>
+                                    <h2 class="text-uppercase font-weight-bold">register and save time!</h2>
+                                    <p>Register with us for future convenience</p>
+                                    <p style="margin-bottom: 0;">»Fast and easy checkout</p>
+                                    <p style="margin-bottom: 0;">»Easy access to your order history and status</p>
+                                    <button type="button" class="shipping-addres-btn-1 btn btn-outline-secondary text-uppercase font-weight-bold">Continue</button>
+                                </td>
+                                <td class="rightcol-shipping-addres">
+                                    <h1 class="text-uppercase font-weight-bold">Already registed?</h1>
+                                    <p style="text-align: left;">Please log in below</p>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="text-uppercase font-weight-bold">EMAIL ADDRESS <span style="color: red;">*</span></label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1" class="text-uppercase font-weight-bold" >Password <span style="color: red;">*</span></label>
+                                        <input type="password" class="form-control is-invalid" id="validationServerUserpassword">
+                                        <div id="validationServerUserpasswordFeedback" class="invalid-feedback font-weight-bold" style="font-size: 18px;">
+                                            * Required Fileds
+                                        </div>
+                                    </div>
+                                    <button type="button" class="shipping-addres-btn-2 btn btn-outline-secondary text-uppercase font-weight-bold">Log in</button>
+                                    <button type="button" class="btn btn-link" style="margin-top: 40px; color:black;">Forgot Password ?</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="accordion-item border-bottom">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <p class="text-uppercase font-weight-bold">02. Billing Information</p>
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    ...
+                </div>
+            </div>
+            </div>
+            <div class="accordion-item border-bottom">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <p class="text-uppercase font-weight-bold">03. Shipping Information</p>
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    ...
+                </div>
+            </div>
+            </div>
+            <div class="accordion-item border-bottom">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <p class="text-uppercase font-weight-bold">04. Shipping method</p>
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    ...
+                </div>
+            </div>
+            </div>
+            <div class="accordion-item border-bottom">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <p class="text-uppercase font-weight-bold">05. Payment method</p>
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    ...
+                </div>
+            </div>
+            </div>
+            <div class="accordion-item border-bottom">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    <p class="text-uppercase font-weight-bold">06. Order Review</p>
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    ...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="subscribe container-fluid">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12 col-lg-6 slider">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Цены приемлемые, обслуживание качественное.”
+                                    </p>
+
+                                    <p class="name">Иванов А.А.</p>
+                                    <p class="location">ДНР, Донецк</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face2.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Отличный вервис, все очень быстро!”
+                                    </p>
+
+                                    <p class="name">Григорий А.Р.</p>
+                                    <p class="location">ДНР, Горловка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="review-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/face3.jpg" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="text">
+                                    “Все отлично, доставили в целостности”
+                                    </p>
+
+                                    <p class="name">Виталий Ф.Д.</p>
+                                    <p class="location">ДНР, Маеевка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6 text-center subscribe-col">
+            <h5>Подписка</h5>
+            <p>Будь в курсе всех новостей, и самых горячих поставок!</p>
+            <div class="subscribe-wrapper">
+            <form action="#">
+                <input type="email" name="email" placeholder="Enter Your Email">
+                <button type="submit" class="button">Подписаться</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <footer class="container-fluid">
+    <div class="container">
+        <div class="row navigation">
+        <div class="col-md-12 col-lg-5">
+            <a class="navbar-brand" href="#">Авто<span>Парк</span></a>
+            <p class='footer-text'>Ждем вас в нашем магазине. </p> <br>
+            <p class='footer-text'> Побалуйте себя и своего "железного" коня.</p>
+        </div>
+        <div class='col-md-12 col-lg-7 footer-navigation'>
+            <div class='row justify-content-center'>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">О нас</h5>
+                <a href="#" class="footer-link">Главная</a> <br>
+                <a href="#" class="footer-link">Товары</a> <br>
+                <a href="#" class="footer-link">Машины</a> <br>
+                <a href="#" class="footer-link">Цены</a> <br>
+                <a href="#" class="footer-link">Поставки</a>
+            </div>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">Информация</h5> 
+                <a href="#" class="footer-link">Пользовательское соглашение</a> <br>
+                <a href="#" class="footer-link">Документы</a> <br>
+                <a href="#" class="footer-link">Подписки</a> <br>
+                <a href="#" class="footer-link">Партнеры</a> <br>
+                <a href="#" class="footer-link">Акции</a>
+            </div>
+            <div class="col-sm-4 col-7">
+                <h5 class="footer-header-nav">Категории</h5>
+                <a href="#" class="footer-link">Машины</a> <br>
+                <a href="#" class="footer-link">Запчасти</a> <br>
+                <a href="#" class="footer-link">Площадки</a> <br>
+                <a href="#" class="footer-link">Аренда</a> <br>
+                <a href="#" class="footer-link">Все категории</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class='container-fluid gray bottom-footer'>
+        <div class='container'>
+        <div class="row">
+            <div class="col-md-12 col-lg-6 copyright">
+                <p class='text-center text-lg-left'>© 2022  Авто Парк</p>
+            </div>
+            <div class="col-md-12 col-lg-6 social text-center text-lg-right">
+            <a href="#" class='social-link'><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-twitter"></i></a>
+            <a href="#" class='social-link disabled'><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-pinterest-p"></i></a>
+            <a href="#" class='social-link'><i class="fab fa-google-plus-g"></i></a>
+            </div>
+        </div>
+        </div>
+    </div>
+    </footer>
+</div> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>     
+    </body>
+</html>
